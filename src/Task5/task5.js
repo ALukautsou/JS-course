@@ -29,10 +29,8 @@
     function sum(array) {
         var s = 0;
 
-        if (typeof array !== undefined) {
-            for (var i = 0; i < array.length; i++) {
-                s += array[i];
-            }
+        for (var i = 0; i < array.length; i++) {
+            s += array[i];
         }
         return s;
     }
