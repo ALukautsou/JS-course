@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<script type="text/javascript" src="task22.js"></script>
+<!--		<script type="text/javascript" src="mountains.js"></script> -->		
+		<style type="text/css">
+			/* Defines a cleaner look for tables */
+			table  { border-collapse: collapse;  }
+  			td, th { border: 1px solid black; padding: 3px 8px; }
+  			th     { text-align: left; }
+		</style>
+	</head>
+	<body>
+		<table>
+  			<tr>
+    			<th>name</th>
+    			<th>height</th>
+    			<th>country</th>
+  			</tr>
+  			<tr>
+    			<td>Kilimanjaro</td>
+    			<td>5895</td>
+    			<td>Tanzania</td>
+  			</tr>
+		</table>
+		<br>
+		<script type="text/javascript"> 	
+			document.body.appendChild(buildTable(MOUNTAINS));
+		</script>  
+		
+	</body>
+</html>
