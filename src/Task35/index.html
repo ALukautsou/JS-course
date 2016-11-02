@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<script type="text/javascript" src="task35.js"></script>
+	</head>
+	<body>
+		<b>Conway’s Game of Life</b>
+		<p>
+		<div id="grid"></div>
+		</p>
+		<button id="next">Next generation</button>
+		<script>
+			var g = document.querySelector('#grid');
+			var n = document.querySelector('#next');
+			var w = 5;
+		    var h = 5;
+		    var cb = [];
+  			gameOfLife(g, n, w, h, cb);
+  		</script>
+	</body>
+</html>
