@@ -23,7 +23,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-        'karma.conf*.js'
+        'karma.conf*.js',
+        'src/Task36/task36.js'
     ],
 
 
