@@ -1,6 +1,6 @@
-//Task38
-// Creating directories
-//******TESTED USING CURL******
+//Task38 - Task39
+// Creating directories - A public space on a Web
+//******TESTED USING NESTED FOLDER *FILES* AND INDEX.HTML FILE******
 
 //Predefined functions and server set up
 //*Initializing modules

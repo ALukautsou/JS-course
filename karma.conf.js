@@ -26,7 +26,10 @@ module.exports = function(config) {
         'karma.conf*.js',
         'src/Task36/task36.js',
         'src/Task37/task37.js',
-        'src/Task38/task38.js'
+        'src/Task38/task38.js',
+        'src/Task39/fileserver.js',
+        'src/Task39/files/index.html',
+        'src/Task39/files/task39.js'
     ],
 
 
