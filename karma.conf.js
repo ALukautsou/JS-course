@@ -23,13 +23,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-        'karma.conf*.js',
-        'src/Task36/task36.js',
-        'src/Task37/task37.js',
-        'src/Task38/task38.js',
-        'src/Task39/fileserver.js',
-        'src/Task39/files/index.html',
-        'src/Task39/files/task39.js'
+        'karma.conf*.js'
     ],
 
 
@@ -64,7 +58,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
