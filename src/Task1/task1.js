@@ -1,9 +1,10 @@
-function forLoop(a) {
-    var sqr = "";
-     for (var i=0; i<a; i++) {
-         sqr += "#";
-        console.log(sqr);
+function forLoop(a){
+    let str = "";
+    for (var i = 1; i <=a; i++){
+        var sharp = "#";
+        var substr = sharp.repeat(i);
+        substr += "/n";
+        str += substr;
     }
+    return str;
 }
-
-forLoop(7);
