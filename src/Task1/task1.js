@@ -1,8 +1,8 @@
 function forLoop(a) {
-    var str = "";
-    for (var i = 1; i <= a; i++) {
-        var substr = "#".repeat(i);
-        substr += "/n";
+    var str;
+    for (var i = "#"; i.length <= a; i+="#") {
+        var substr = "\n";
+        substr += i;
         str += substr;
         }
     return str;
