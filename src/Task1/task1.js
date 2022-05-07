@@ -1,9 +1,7 @@
 function forLoop(a) {
-    var str;
+    var str = "";
     for (var i = "#"; i.length <= a; i+="#") {
-        var substr = "\n";
-        substr += i;
-        str += substr;
-        }
+        str += (i + (i.length == a ? "" : "\n"));
+    }
     return str;
 }
