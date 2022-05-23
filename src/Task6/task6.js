@@ -9,9 +9,9 @@ function reverseArray(arr){
 function reverseArrayInPlace(arr){
     var count = arr.length-1;  
     for (var i = 0; i <= count/2; i++){
-        var sqr = arr[count-i];
+        var swap = arr[count-i];
         arr[count-i] = arr[i];
-        arr[i] = sqr;
+        arr[i] = swap;
     }
     return arr;
 }
