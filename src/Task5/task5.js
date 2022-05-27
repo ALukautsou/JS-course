@@ -1,4 +1,4 @@
-function range(start, end, step = start < end ? 1 : -1){
+function range(start, end, step = 1){
     var arr = [];
     for (var i = start; step < 0 ? i >= end : i <= end; i += step){
         arr.push(i);
