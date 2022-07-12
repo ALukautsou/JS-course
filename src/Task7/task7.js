@@ -19,8 +19,7 @@ function listToArray(list) {
 }
 
 function prepend(key, list) {
-    var node = {value: key, rest: list};
-    return node;
+    return {value: key, rest: list};
 }
 
 function nth(list, num) {
