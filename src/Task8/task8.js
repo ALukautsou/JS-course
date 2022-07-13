@@ -1,18 +1,18 @@
 function deepEqual(a, b) {
-  if (a === null || b === null) {return false;}
+  var keysA = Object.keys(a);
+  var keysB = Object.keys(b);
 
-  if (typeof a === "object" && typeof b === "object") {
-    let keysA = Object.keys(a), keysB = Object.keys(b);
-
-    if (keysA.length !== keysB.length) {return false;}
-
-    for (let key of keysA) {
-      if (keysB.includes(key) && !deepEqual(a[key], b[key])) {return false;}
-    }
-
-    return true;
-  } else {
+  if (typeof a !== "object" || typeof b !== "object") {
     return a === b;
   }
+
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  for (var key of keysA) {
+      if (keysA instanceof Object && keysB instanceof Object) {
+        return keysB.includes(key) && deepEqual(a[key], b[key])
+      }
+  }
 }
-console.log(deepEqual(10,10));
