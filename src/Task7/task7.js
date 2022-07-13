@@ -23,6 +23,9 @@ function prepend(key, list) {
 }
 
 function nth(list, num) {
-    return (!list) ? undefined :
-    (num === 0) ? list.value : nth(list.rest, num - 1);
+    return (!list)
+        ? undefined
+        : number === 0
+            ? list.value
+            : nth(list.rest, number - 1);
 }
