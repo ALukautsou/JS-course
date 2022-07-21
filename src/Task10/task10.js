@@ -14,7 +14,9 @@ ancestry.forEach(function(person) {
 });
 
 var difference = ancestry.filter(function(person) {
-    return byName[person.mother] != null;
+    if (byName[person.mother] !== undefined) {
+        return person.mother !== null;
+    }
 }).map(function(person) {
     return person.born - byName[person.mother].born;
 });
