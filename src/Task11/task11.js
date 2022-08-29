@@ -7,25 +7,21 @@ function average(array) {
     return Math.round(array.reduce(plus) / array.length);
 }
 
-function groupBy(array, groupOf) { 
-    var groups = {};
-    array.forEach(function(element) {
-        var groupName = groupOf(element);
-        if (groupName in groups) {
-            groups[groupName].push(element);
-        } else {
-            groups[groupName] = [element];
-        }
-    });
+function groupBy(array, groupOf) {
+  return array.reduce(function(groups, element) {
+    var groupName = groupOf(element);
+    (groupName in groups) ? groups[groupName].push(element) : groups[groupName] = [element];
+
     return groups;
-  }
+  }, {});
+}
 
-  var byCentury = groupBy(ancestry, function(person) {
-    return Math.ceil(person.died / 100);
+var getStatistic = groupBy(ancestry, function(person) {
+  return Math.ceil(person.died / 100);
+});
+
+for (var statistic in getStatistic) {
+  var ages = getStatistic[statistic].map(function(person) {
+    return person.died - person.born;
   });
-
-  for (var century in byCentury) {
-    var ages = byCentury[century].map(function(person) {
-      return person.died - person.born;
-    });
-  }
+}
