@@ -1,35 +1,23 @@
 function deepEqual(a, b) {
-  if (a === null || b === null) {
-    return a === b;
+  if ((a instanceof Object && b === null) || (b instanceof Object && a === null)) {
+      return false;
   }
 
-  var aLikeNumber = new Number(a);
-  var bLikeNumber = new Number(b);
-
-  if (typeof a === "boolean" || typeof b === "boolean") {
-    return a === b;
+  if (typeof a !== typeof b) {
+      return false;
   }
 
-  if (typeof a === "string" || typeof b === "string") {
-    return a === b;
+  if (!(a instanceof Object)) {
+      return a === b;
   }
 
-  if ((!isNaN (aLikeNumber) && aLikeNumber instanceof Number) || (!isNaN (bLikeNumber) && bLikeNumber instanceof Number)) {
-    return a === b;
+  if (Object.keys(a).length !== Object.keys(b).length) {
+      return false;
   }
-
-  if (!(a instanceof Object) || !(b instanceof Object)) {
-    return false;
-  }
-
-  var keysA = Object.keys(a);
-  var keysB = Object.keys(b);
-
-  if (keysA.length !== keysB.length) {
-    return false;
-  }
-
-  for (var key of keysA) {
-    return keysB.includes(key) && deepEqual(a[key], b[key]);
+  
+  for (var key in a) {
+      if (key in b && a[key] !== null && b[key] !== null) {
+          return deepEqual(a[key], b[key]);
+      }
   }
 }
