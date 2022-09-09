@@ -1,18 +1,18 @@
-class Vector {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
+function Vector(x, y) {
+    this.x = x;
+    this.y = y;
+}
 
-    plus(another) {
-        return new Vector(this.x + another.x, this.y + another.y);
-    }
+Vector.prototype.plus = function(another) {
+    return new Vector(this.x + another.x, this.y + another.y);
+}
 
-    minus(another) {
-        return new Vector(this.x - another.x, this.y - another.y);
-    }
+Vector.prototype.minus = function(another) {
+    return new Vector(this.x - another.x, this.y - another.y);
+}
 
-    get length() {
+Object.defineProperty(Vector.prototype, "length", {
+    get: function() {
         return Math.sqrt((this.x * this.x) + (this.y * this.y));
     }
-}
+});
