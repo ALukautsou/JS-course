@@ -1,32 +1,44 @@
-function ArraySeq(arr) {
-    var i = 0;
-    return {
-        next: function () {
-            return {
-                value: arr[i],
-                done: !arr[i++]
-            };
-        }
-    }
-}
-
 function logFive(sequence) {
-    for (var i = 0; i < 5; i++) {
-        const { value, done } = sequence.next();
-        if (done) {
-            break;
+    for(var i = 0; i < 5; i++){
+        if(sequence.next()) {
+           console.log(sequence.current());
+        } else {
+          return;
         }
-        console.log(value);
     }
 }
+  
+function ArraySeq(array) {
+    this.index  = -1;
+    this.array = array;
+}
 
-function RangeSeq(from, to) {
-    return {
-        next: function () {
-            return {
-                value: from++, 
-                done: from > to
-            };
-        }
+ArraySeq.prototype.next = function() {
+    if(this.index >= this.array.length-1) {
+        return false;
     }
+    this.index++;
+    return true;
+ }
+
+ArraySeq.prototype.current = function() {
+    return this.array[this.index];
+}
+
+function RangeSeq(from,to) {
+    this.from = from;
+    this.to = to;
+    this.index = -1;
+}
+
+RangeSeq.prototype.next = function() {
+    if (this.from + this.index > this.to) {
+        return false;  
+    }
+    this.index++;
+    return true;
+}
+
+RangeSeq.prototype.current = function() {
+    return this.from + this.index;
 }
