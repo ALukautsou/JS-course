@@ -11,12 +11,15 @@ var box = {
 
 function withBoxUnlocked(body) {
     try {
-        box.unlock();
-        body();
+        if (box.lock) {
+            box.unlock();
+            body();
+        }
     } finally {
         box.lock();
     }
 }
+
 
 withBoxUnlocked(function() {
     box.content.push("gold piece");
