@@ -1,10 +1,9 @@
 function logFive(sequence) {
     for(var i = 0; i < 5; i++){
-        if(sequence.next()) {
-           console.log(sequence.current());
-        } else {
-          return;
+        if(!sequence.next()) {
+           break;
         }
+        console.log(sequence.current());
     }
 }
   
@@ -26,19 +25,18 @@ ArraySeq.prototype.current = function() {
 }
 
 function RangeSeq(from,to) {
-    this.from = from;
+    this.from = from - 1;
     this.to = to;
-    this.index = -1;
 }
 
 RangeSeq.prototype.next = function() {
-    if (this.from + this.index > this.to) {
+    if (this.from >= this.to) {
         return false;  
     }
-    this.index++;
+    this.from++;
     return true;
 }
 
 RangeSeq.prototype.current = function() {
-    return this.from + this.index;
+    return this.from;
 }
