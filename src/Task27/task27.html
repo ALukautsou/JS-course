@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="wrapper">
+    <div data-tabname="one">Tab one</div>
+    <div data-tabname="two">Tab two</div>
+    <div data-tabname="three">Tab three</div>
+</div>
+<script>
+    function asTabs(node) {
+        var tabs = [];
+
+        for (var i = 0; i < node.childNodes.length; i++) {
+            var child = node.childNodes[i];
+            if (child.nodeType == document.ELEMENT_NODE) {
+                tabs.push(child);
+            }
+        }
+    
+        var buttonList = document.createElement("div");
+
+        tabs.forEach(function(tab, index) {
+            var button = document.createElement("button");
+            var buttonText = document.createTextNode(tab.dataset.tabname);
+            button.appendChild(buttonText);
+            buttonList.appendChild(button);
+
+            button.addEventListener("click", function() {
+                selectTab(index);
+            });
+        });
+        node.insertBefore(buttonList, node.firstChild);
+
+        function selectTab(index) {
+            tabs.forEach(function(tab, i) {
+                if (index === i) {
+                    tab.style.display = "";
+                } else {
+                    tab.style.display = "none";
+                }
+            });
+
+            for (var i = 0; i < buttonList.childNodes.length; i++) {
+                buttonList.childNodes[i].style.marginRight = "3px";
+                if (index === i) {
+                    buttonList.childNodes[i].style.background = "red";
+                } else {
+                    buttonList.childNodes[i].style.background = "";
+                }
+            }
+        } 
+        selectTab(0);
+    }
+    asTabs(document.querySelector("#wrapper"));
+</script>
+</body>
+</html>
