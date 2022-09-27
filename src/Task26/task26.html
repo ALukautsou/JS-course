@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+    .trail { /* className for the trail elements */
+        position: absolute;
+        height: 6px; width: 6px;
+        border-radius: 3px;
+        background: teal;
+    }
+    body {
+        height: 300px;
+    }
+</style>
+      
+<script>
+    var trailArr = [];
+    var counter = 0;
+
+    for (var i = 0; i <= 20; i++) {
+        var dot = document.createElement("div");
+        dot.className = "trail";
+        trailArr.push(dot);
+        document.body.appendChild(dot);
+    }
+
+    addEventListener("mousemove", function(event) {
+        var currentDot = trailArr[counter];
+        currentDot.style.left = (event.pageX - 4) + "px";
+        currentDot.style.top = (event.pageY - 4) + "px";
+        counter = (counter + 1) % trailArr.length;
+    });
+</script>
+</body>
+</html>
