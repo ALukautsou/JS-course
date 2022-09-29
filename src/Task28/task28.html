@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas width="1000" height="200"></canvas>
+<script>
+    var cx = document.querySelector("canvas").getContext("2d");
+    
+    function trapezoid() {
+        cx.beginPath();
+        cx.moveTo(50, 10);
+        cx.lineTo(25, 80);
+        cx.lineTo(180, 80);
+        cx.lineTo(150, 10);
+        cx.lineTo(50,10);
+        cx.stroke();
+    }
+    trapezoid();
+
+    function diamond() {
+        cx.translate(290,15);
+        cx.rotate(1/4 * Math.PI);
+        cx.fillStyle = "red";
+        cx.fillRect(0, 0, 60, 60);
+        cx.resetTransform();
+    }
+    diamond();
+
+    function zigzag() {
+        cx.beginPath();
+
+        for (var i = 10; i < 100; i += 20) {
+            cx.moveTo(350, i);
+            cx.lineTo(450, i + 15);
+            cx.lineTo(350, i + 20);
+        }
+        cx.stroke();
+    }
+    zigzag();
+
+    function spiral(){
+        var radius = 0;
+        var angle = 0;
+        cx.beginPath();
+        cx.moveTo(550, 60);
+        
+        for (var i = 0; i < 155; i++) {
+            radius += 0.4;
+            angle += (Math.PI * 2) / 50;
+            var x = 1100 / 2 + radius * Math.cos(angle);
+            var y = 120 / 2 + radius * Math.sin(angle);
+            cx.lineTo(x, y);
+        }
+        cx.stroke();
+    };
+    spiral();
+
+    function star(){
+        cx.beginPath();
+        cx.moveTo(740, 60);
+        
+        for (var i = 1; i <= 6; i++) {
+            var angle = i * Math.PI / 3;
+            cx.quadraticCurveTo(700, 60,700 + Math.cos(angle) * 40, 60 + Math.sin(angle) * 40);
+        }  
+        cx.fillStyle = "gold";
+        cx.fill();
+    }
+    star();
+</script>   
+</body>
+</html>
