@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="grid"></div>
+<button id="next">Next generation</button>
+    
+<script>
+    var cols = 20;
+    var rows = 20;
+    var grid = document.getElementById("grid");
+    var button = document.getElementById("next");
+    var checkboxes = [];
+
+    for (var i = 0; i < rows; i++) {
+        checkboxes[i] = [];
+        for (var j = 0; j < cols; j++) {
+            var checkbox = document.createElement("input");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.checked = Math.random() < 0.2;
+            checkboxes[i][j] = checkbox;
+        }
+    }
+
+    function createGrid() {
+        var resultTable = document.createElement("table");
+        
+        for (var i = 0; i < rows; i++) {
+            var row = document.createElement("tr");
+            for (var j = 0; j < cols; j++) {
+                var cell = document.createElement("td");
+                cell.appendChild(checkboxes[i][j]);
+                row.appendChild(cell);  
+            }
+            resultTable.appendChild(row);
+        }
+        grid.appendChild(resultTable);
+    }
+
+    function countAliveNeighbours(i, j) {
+        var counter = 0;
+
+        for (var m = Math.max(0, i - 1); m <= Math.min(rows - 1, i + 1); m++) {
+            for (var n = Math.max(0, j - 1); n <= Math.min(cols - 1, j + 1); n++) {
+                if (m < 0 || n < 0 || m > rows - 1 || n > cols - 1) {
+                    continue;
+                } else {
+                    if ((m != i || n != j) && checkboxes[m][n].checked) {
+                        counter++;
+                    }
+                }
+            }
+        }
+        return counter;
+    }
+  
+    function newGeneration() {
+        var gridPrevious = checkboxes;
+        var newGrid = new Array (cols * rows);
+        
+        for (var i = 0; i < rows; i++) {
+            newGrid[i] = [];
+            for (var j = 0; j < cols; j++) {
+            if (countAliveNeighbours(i, j) > 3 || countAliveNeighbours(i, j) < 2 && gridPrevious[i][j].checked === true) {
+                newGrid[i][j] = false;
+            }
+            if (countAliveNeighbours(i, j) === 3 && gridPrevious[i][j].checked === false) {
+                newGrid[i][j] = true;
+            }
+            if (countAliveNeighbours(i, j) === 3 || countAliveNeighbours(i, j) === 2 && gridPrevious[i][j].checked === true) {
+                newGrid[i][j] = true;
+            }
+          }
+        }
+        return newGrid;
+    }
+
+    function updateGrid() {
+        var updGridState = newGeneration();
+        
+        for (var i = 0; i < rows; i++) {
+          for (var j = 0; j < cols; j++) {
+            checkboxes[i][j].checked = updGridState[i][j];
+          }
+        }
+    }
+    button.addEventListener("click", event => updateGrid());
+    createGrid();
+    countAliveNeighbours();
+</script>
+</body>
+</html>
