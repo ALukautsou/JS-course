@@ -5,7 +5,7 @@ function all(promises) {
         promises.forEach(function(promise, i) {
             promise.then(function(result) {
                 results[i] = result;
-                promiseCounter -= 1;
+                promiseCounter--;
                 
                 if (promiseCounter === 0) {
                     succeed(results);
