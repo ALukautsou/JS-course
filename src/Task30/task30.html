@@ -20,20 +20,20 @@
         x: 50,
         y: 50
     };
-    var rad = 20;
+    var rad = 15;
     var moveX = 100;
     var moveY = 60;
 
     function updateAnimation(step) {
         cx.clearRect(0, 0, 400, 400);
-        cx.lineWidth = 5;
+        cx.lineWidth = 4;
         cx.strokeRect(25, 25, 365, 365);
     
-        if (ball.x > 390 - rad || ball.x < 25 + rad) {
+        if (ball.x > 387 - rad || ball.x < 25 + rad) {
             moveX = -moveX;
         }
 
-        if (ball.y > 390 - rad || ball.y < 25 + rad) {
+        if (ball.y > 387 - rad || ball.y < 25 + rad) {
             moveY = -moveY;
         }
         ball.x += step *  moveX;
