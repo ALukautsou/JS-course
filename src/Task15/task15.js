@@ -1,19 +1,21 @@
 function logFive(sequence) {
-    for(var i = 0; i < 5; i++){
-        if(!sequence.next()) {
+    var str = "";
+    for (var i = 0; i < 5; i++) {
+        if (!sequence.next()) {
            break;
         }
-        console.log(sequence.current());
+        str += sequence.current() + "\n";
     }
+    return str;
 }
-  
+
 function ArraySeq(array) {
     this.index  = -1;
     this.array = array;
 }
 
 ArraySeq.prototype.next = function() {
-    if(this.index >= this.array.length-1) {
+    if (this.index >= this.array.length-1) {
         return false;
     }
     this.index++;
