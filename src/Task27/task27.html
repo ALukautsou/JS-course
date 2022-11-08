@@ -9,47 +9,33 @@
 </div>
 <script>
     function asTabs(node) {
+        var buttonList = document.createElement("div");
         var tabs = [];
-
-        for (var i = 0; i < node.childNodes.length; i++) {
+        for (var i = 0, j = -1; i < node.childNodes.length; i++) {
             var child = node.childNodes[i];
-            if (child.nodeType == document.ELEMENT_NODE) {
+            if (child.nodeType === document.ELEMENT_NODE) {
                 tabs.push(child);
+                j++;    
+                var button = document.createElement("button");
+                var buttonText = document.createTextNode(child.dataset.tabname);
+                button.appendChild(buttonText);
+                buttonList.appendChild(button);
+                button.addEventListener("click", (function(j) {
+                    return function() {
+                        selectTab(j);
+                    }
+                })(j));
             }
         }
-    
-        var buttonList = document.createElement("div");
-
-        tabs.forEach(function(tab, index) {
-            var button = document.createElement("button");
-            var buttonText = document.createTextNode(tab.dataset.tabname);
-            button.appendChild(buttonText);
-            buttonList.appendChild(button);
-
-            button.addEventListener("click", function() {
-                selectTab(index);
-            });
-        });
         node.insertBefore(buttonList, node.firstChild);
 
         function selectTab(index) {
             tabs.forEach(function(tab, i) {
-                if (index === i) {
-                    tab.style.display = "";
-                } else {
-                    tab.style.display = "none";
-                }
-            });
-
-            for (var i = 0; i < buttonList.childNodes.length; i++) {
+                index === i ? tab.style.display = "" : tab.style.display = "none";
                 buttonList.childNodes[i].style.marginRight = "3px";
-                if (index === i) {
-                    buttonList.childNodes[i].style.background = "red";
-                } else {
-                    buttonList.childNodes[i].style.background = "";
-                }
-            }
-        } 
+                index === i ? buttonList.childNodes[i].style.background = "red" : buttonList.childNodes[i].style.background = "";
+            });
+        }
         selectTab(0);
     }
     asTabs(document.querySelector("#wrapper"));
