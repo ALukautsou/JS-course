@@ -15,8 +15,8 @@
 
         textfield.addEventListener("input", function() {
           var matching = terms.filter(function(term) {
-            return term.indexOf(textfield.value) === 0;
-          });
+            return term.toLowerCase().startWith(textfield.value.toLowerCase());
+          }); 
           suggestions.textContent = "";
           
           matching.slice(0, 20).forEach(function(term) {
