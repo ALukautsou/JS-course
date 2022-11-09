@@ -10,14 +10,17 @@ var box = {
 };
 
 function withBoxUnlocked(body) {
+    var finalization = box.unlock;
+    if (box.locked) {
+        box.unlock();
+        finalization = box.lock;
+    } 
     try {
-        if (box.lock) {
-            box.unlock();
-        }
-    } catch (e) {
         body();
+    } catch(e) {
+        throw(e);
     } finally {
-        box.lock();
+        finalization();
     }
 }
 
