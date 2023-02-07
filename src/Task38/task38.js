@@ -6,6 +6,8 @@ methods.MKCOL = function(path, respond) {
             respond(500, error.toString());
         } else if (stats.isDirectory()) {
             respond(204);
+        } else {
+            respond(400, "Bad request");
         }
     });
 };
